@@ -1,0 +1,28 @@
+@import "../../index";
+
+.post_component{
+    border: 2px solid #eee;
+
+    .post_pfp{
+        height: 3.2rem;
+        width: 3.2rem;
+        background: rgb(59, 145, 145);
+    }
+
+    .content_forum{
+        flex-grow: 1;
+
+        .question_post{
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .post_details{
+            font-size: 0.8rem;
+            .username_post{
+                font-weight: 600;
+                color: $primary-color;
+            }
+        }
+    }
+}
