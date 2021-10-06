@@ -2,6 +2,7 @@ import { ClassMethod } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,7 +19,8 @@ export class LoginPageComponent implements OnInit {
   
   constructor(
     private formBuilder :FormBuilder,
-    private authenticationService :AuthenticationService
+    private authenticationService :AuthenticationService,
+    private router :Router
     ) { }
     
   ngOnInit(): void {
@@ -31,9 +33,7 @@ export class LoginPageComponent implements OnInit {
   }
 
   handleSignUp(){
-    console.log(this.checkoutForm);
     this.error = ""
-    // let controls =
     if(this.checkoutForm.status == "INVALID") {
       this.error = "Check the input fields and try again";
     }
@@ -42,8 +42,14 @@ export class LoginPageComponent implements OnInit {
       if(values.password !== values.confirm_password) this.error = "Password mismatch";
       else if(values.username.split(" ").length >= 2) this.error = "Username cannot have space"
       else{
-        this.authenticationService.handleSignUp().subscribe((data :any) => {
+        this.authenticationService.handleSignUp({
+          username : values.username,
+          email : values.email_address,
+          password : values.password
+        }).subscribe((data :any) => {
           console.log(data);
+          this.router.navigate(['/']);
+
         }, err => {console.log(err)});
       }
     }
