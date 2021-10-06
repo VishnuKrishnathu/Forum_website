@@ -1,0 +1,9 @@
+@import "../../index";
+
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid $success-validation;
+}
+
+.ng-invalid:not(form)  {
+  border-left: 5px solid $error-validation;
+}
