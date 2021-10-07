@@ -1,9 +1,18 @@
-import { ClassMethod } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Router } from '@angular/router';
 
+interface ILoginData{
+  username :string;
+  password :string;
+}
+
+interface IErrorData{
+  error : {
+    message :string;
+  }
+}
 
 @Component({
   selector: 'app-login-page',
@@ -12,47 +21,36 @@ import { Router } from '@angular/router';
 })
 export class LoginPageComponent implements OnInit {
 
-  checkoutForm :FormGroup = new FormGroup({});
-  error : string = "";
-  errors : Array<string> = [];
+  loginForm :FormGroup = new FormGroup({});
+  error :string = "";
 
-  
   constructor(
-    private formBuilder :FormBuilder,
-    private authenticationService :AuthenticationService,
+    private authenticate :AuthenticationService,
     private router :Router
-    ) { }
-    
+  ) {}
+
   ngOnInit(): void {
-    this.checkoutForm = new FormGroup({
-      username : new FormControl('', [ Validators.required, Validators.minLength(5) ]),
-      email_address : new FormControl('', [ Validators.required, Validators.email ]),
-      password : new FormControl( '', [Validators.required, Validators.minLength(5)]),
-      confirm_password : new FormControl( '', [Validators.required, Validators.minLength(5)])
+    this.loginForm = new FormGroup({
+      username : new FormControl('', [Validators.required, Validators.minLength(5)]),
+      password : new FormControl('', [Validators.required, Validators.minLength(5)])
     });
   }
 
-  handleSignUp(){
-    this.error = ""
-    if(this.checkoutForm.status == "INVALID") {
+  handleLogin(){
+    this.error = "";
+    if(this.loginForm.status == "INVALID"){
       this.error = "Check the input fields and try again";
     }
-    else {
-      let values = this.checkoutForm.value;
-      if(values.password !== values.confirm_password) this.error = "Password mismatch";
-      else if(values.username.split(" ").length >= 2) this.error = "Username cannot have space"
-      else{
-        this.authenticationService.handleSignUp({
-          username : values.username,
-          email : values.email_address,
-          password : values.password
-        }).subscribe((data :any) => {
-          console.log(data);
-          this.router.navigate(['/']);
-
-        }, err => {console.log(err)});
-      }
+    else{
+      let values = this.loginForm.value;
+      let error_message = this.authenticate.handleSignIn({
+        username : values.username,
+        password : values.password
+      }).subscribe((data :ILoginData) => this.router.navigate(['/'])
+      ,(err :IErrorData) => this.error = err.error.message);
+      console.log(error_message);
     }
   }
 
+  errorMessage(){}
 }

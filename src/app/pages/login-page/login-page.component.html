@@ -1,35 +1,31 @@
-<form class="w-50 m-3" [formGroup]="checkoutForm" (ngSubmit)="handleSignUp()">
+<form class="w-50 m-3" [formGroup]="loginForm" (ngSubmit)="handleLogin()">
     <div class="form-group row">
-        <label for="username" class="col-sm-4 col-form-label">Username :</label>
-        <div class="col-sm-8">
-            <input 
-                formControlName="username" 
-                class="form-control" 
-                type="text" 
-                required
-            >
-        </div>
+        <label 
+            class="col-form-label col-sm-4"
+        >Username :</label>
+        <input 
+            class="form-control col-sm-8" 
+            type="text" 
+            formControlName="username"
+            required
+        >
     </div>
     <div class="form-group row">
-        <label class="col-sm-4 col-form-label" for="email_address">Email :</label>
-        <div class="col-sm-8">
-            <input formControlName="email_address" type="email" class="form-control" required>
-        </div>
+        <label class="col-form-label col-sm-4">Password :</label>
+        <input 
+            class="form-control col-sm-8" 
+            type="password" 
+            formControlName="password"
+            required
+        >
     </div>
-    <div class="form-group row">
-        <label class="col-form-label col-sm-4" for="password">Password :</label>
-        <div class="col-sm-8">
-            <input formControlName="password" type="password" class="form-control" required>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label for="confirm_password" class="col-form-label col-sm-4">Confirm password :</label>
-        <div class="col-sm-8">
-            <input type="password" formControlName="confirm_password" class="form-control" required>
-        </div>
-    </div>
-    <button type="submit" class="btn btn-primary">Sign Up</button>
+    <button 
+        type="submit" 
+        class="btn btn-primary"
+    >Submit</button>
 </form>
-<div *ngIf="error !== ''" class="alert alert-danger w-50 m-3">
-    {{error}}
-</div>
+<div>Don't have an account? <a routerLink="/signup">SignUp</a></div>
+<div 
+    class="alert alert-danger w-50 m-3"
+    *ngIf="error != ''"
+>{{error}}</div>

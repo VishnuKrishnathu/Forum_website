@@ -8,6 +8,11 @@ interface ISignupModel {
   password :string;
 }
 
+interface ILoginModel {
+  username :string;
+  password :string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,11 +23,11 @@ export class AuthenticationService {
   // registers new user
   handleSignUp(userData :ISignupModel){
     console.log(userData);
-    return this.http.post<ISignupModel>(`${environment.API_URL}/login`, userData, {withCredentials: true});
+    return this.http.post<ISignupModel>(`${environment.API_URL}/signup`, userData, {withCredentials: true});
   }
 
   // login function
-  handleSignIn(){
-    return this.http.post<any>(`${environment.API_URL}`, {});
+  handleSignIn(userData :ILoginModel){
+    return this.http.post<ILoginModel>(`${environment.API_URL}/login`, userData, {withCredentials: true});
   }
 }

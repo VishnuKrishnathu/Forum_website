@@ -24,5 +24,10 @@
                 color: $primary-color;
             }
         }
+        .likes_post{
+            cursor: pointer;
+            user-select: none;
+        }
+
     }
 }

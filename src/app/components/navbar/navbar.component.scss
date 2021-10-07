@@ -9,4 +9,18 @@
         background: rgb(170, 59, 59);
         cursor: pointer;
     }
+
+    .navbar_askquestion{
+        border:none;
+        border-radius: 999px;
+        font-size: 1rem;
+        user-select: none;
+        cursor: pointer;
+        outline-style: none;
+        transition: 0.2s;
+
+        &:hover{
+            transform: scale(1.1);
+        }
+    }
 }
