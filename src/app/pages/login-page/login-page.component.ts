@@ -4,8 +4,12 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Router } from '@angular/router';
 
 interface ILoginData{
-  username :string;
-  password :string;
+  user : {
+    id :number;
+    username :string;
+    password :string;
+  },
+  token :string;
 }
 
 interface IErrorData{
@@ -46,7 +50,10 @@ export class LoginPageComponent implements OnInit {
       let error_message = this.authenticate.handleSignIn({
         username : values.username,
         password : values.password
-      }).subscribe((data :ILoginData) => this.router.navigate(['/'])
+      }).subscribe((data :ILoginData) => {
+        localStorage.setItem("token", data.token);
+        this.router.navigate(['/']);
+      }
       ,(err :IErrorData) => this.error = err.error.message);
       console.log(error_message);
     }

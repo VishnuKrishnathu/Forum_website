@@ -13,6 +13,15 @@ interface ILoginModel {
   password :string;
 }
 
+interface ILoginData{
+  user : {
+    id :number;
+    username :string;
+    password :string;
+  },
+  token :string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -28,6 +37,12 @@ export class AuthenticationService {
 
   // login function
   handleSignIn(userData :ILoginModel){
-    return this.http.post<ILoginModel>(`${environment.API_URL}/login`, userData, {withCredentials: true});
+    return this.http.post<ILoginData>(`${environment.API_URL}/login`, userData, {withCredentials: true});
   }
+
+  // check whether the user is logged in
+  getUser(){
+    return this.http.get<any>(`${environment.API_URL}/user`, {withCredentials: true});
+  }
+
 }

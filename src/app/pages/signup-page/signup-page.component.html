@@ -30,6 +30,10 @@
     </div>
     <button type="submit" class="btn btn-primary">Sign Up</button>
 </form>
+<div>Have an account? <a routerLink="/login">Login</a></div>
 <div *ngIf="error !== ''" class="alert alert-danger w-50 m-3">
     {{error}}
+</div>
+<div *ngIf="successMessage !== ''" class="alert alert-success w-50 m-3">
+    {{successMessage}}
 </div>

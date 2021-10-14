@@ -12,13 +12,13 @@ import { Router } from '@angular/router';
 })
 export class SignupPageComponent implements OnInit {
 
-  checkoutForm :FormGroup = new FormGroup({});
+  checkoutForm! :FormGroup;
   error : string = "";
+  successMessage :string = "";
   errors : Array<string> = [];
 
   
   constructor(
-    private formBuilder :FormBuilder,
     private authenticationService :AuthenticationService,
     private router :Router
     ) { }
@@ -48,7 +48,7 @@ export class SignupPageComponent implements OnInit {
           password : values.password
         }).subscribe((data :any) => {
           console.log(data);
-          this.router.navigate(['/']);
+          this.successMessage = "Account successfully created. Try loging in"
 
         }, err => {console.log(err)});
       }

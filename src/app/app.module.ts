@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -10,6 +10,9 @@ import { PostComponent } from './components/post/post.component';
 import { SignupPageComponent } from './pages/signup-page/signup-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { AskQuestionComponent } from './pages/ask-question/ask-question.component';
+import { QuestionBoxComponent } from './components/question-box/question-box.component';
+import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.component';
 
 @NgModule({
   declarations: [
@@ -18,13 +21,17 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
     PostComponent,
     SignupPageComponent,
     HomePageComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    QuestionBoxComponent,
+    AskQuestionComponent,
+    PagenotfoundComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    FormsModule,
     // HttpClientXsrfModule.withOptions({
     //   cookieName: 'My-Xsrf-Cookie',
     //   headerName: 'My-Xsrf-Header',
