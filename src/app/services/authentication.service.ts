@@ -1,33 +1,32 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { HttpClient } from '@angular/common/http';
-
-interface ISignupModel {
-  username :string;
-  email :string;
-  password :string;
-}
-
-interface ILoginModel {
-  username :string;
-  password :string;
-}
-
-interface ILoginData{
-  user : {
-    id :number;
-    username :string;
-    password :string;
-  },
-  token :string;
-}
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { IUserData, ISignupModel, ILoginModel, ILoginData } from 'src/app/interfaces/UserInterface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
+  // constructor
   constructor(private http: HttpClient) { }
+
+  // userdata
+  private static userData :IUserData= {
+    id : undefined,
+    username : "",
+    email : ""
+  };
+
+  // setter to set the user data
+  static setterUser(data :IUserData){
+    this.userData = data;
+  }
+
+  // getter to get the user data
+  static getterUser(){
+    return this.userData;
+  }
 
   // registers new user
   handleSignUp(userData :ISignupModel){
@@ -42,7 +41,12 @@ export class AuthenticationService {
 
   // check whether the user is logged in
   getUser(){
-    return this.http.get<any>(`${environment.API_URL}/user`, {withCredentials: true});
+    return this.http.get<IUserData>(`${environment.API_URL}/user`, {
+      headers: {
+        'Authorization' : `Bearer ${localStorage.getItem('token')}`
+      },
+      withCredentials: true
+    });
   }
 
 }

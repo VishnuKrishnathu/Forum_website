@@ -1,6 +1,11 @@
-<div *ngIf="questionLength <= 200">
-    {{questionLength}}/200
+<div *ngIf="questionLength < 200">
+    {{questionLength}}/199
 </div>
-<div *ngIf="questionLength > 200" style="color:rgb(255, 0, 0)">
-    {{questionLength}}/200
+<div *ngIf="questionLength >= 200" style="color:rgb(255, 0, 0)">
+    {{questionLength}}/199
+</div>
+<button class="btn btn-primary" (click)="questionHandler()">Submit</button>
+
+<div *ngIf="errorMessage !== ''" class="alert alert-danger">
+    {{errorMessage}}
 </div>
