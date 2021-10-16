@@ -1,11 +1,14 @@
-<div class="form-group w-75">
-    <label for="exampleFormControlTextarea1">Ask a question :</label>
-    <textarea 
-        class="form-control" 
-        id="exampleFormControlTextarea1" 
-        rows="3" 
-        style="resize: none;" 
-        [(ngModel)]="value"
-    ></textarea>
-    <app-question-box [textInput]="value"></app-question-box>
+<div class="d-flex flex-column algn-items-center justify-content-between" style="height: 100vh;">
+    <app-navbar></app-navbar>
+    <div class="form-group w-75" style="flex-grow: 1;">
+        <label for="exampleFormControlTextarea1">Ask a question :</label>
+        <textarea 
+            class="form-control" 
+            id="exampleFormControlTextarea1" 
+            rows="3" 
+            style="resize: none;" 
+            [(ngModel)]="value"
+        ></textarea>
+        <app-question-box [textInput]="value"></app-question-box>
+    </div>
 </div>

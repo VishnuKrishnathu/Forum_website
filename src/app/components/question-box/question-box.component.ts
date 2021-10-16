@@ -34,7 +34,6 @@ export class QuestionBoxComponent implements OnInit, OnChanges {
       this.errorMessage = "Question cannot be greater than 199 words"
     };
     let user_id = AuthenticationService.getterUser().id;
-    // console.log(AuthenticationService.getterUser());
     user_id !== undefined && this.questionService.submitQuestion(this.textInput, user_id).subscribe((data :IUserData)=>{
       this.route.navigate(['/']);
     }, (error) => this.errorMessage = "Error in posting the question, try again later");

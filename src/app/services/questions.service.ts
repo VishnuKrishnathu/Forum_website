@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IUserData } from 'src/app/interfaces/UserInterface';
 import { environment } from 'src/environments/environment';
+import { AuthenticationService } from './authentication.service';
+import { IQuestions } from '../interfaces/PostsInterface';
 
 @Injectable({
   providedIn: 'root'
@@ -17,5 +18,11 @@ export class QuestionsService {
       question,
       users_id: userId 
     })
+  }
+
+  getAllQuestions(){
+    return this.http.post<IQuestions>(`${environment.API_URL}/get-questions`, {
+      user_id : AuthenticationService.getterUser().id
+    });
   }
 }

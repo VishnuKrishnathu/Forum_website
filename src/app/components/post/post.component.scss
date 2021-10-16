@@ -24,9 +24,19 @@
                 color: $primary-color;
             }
         }
-        .likes_post{
+        .likes_post {
             cursor: pointer;
             user-select: none;
+
+            .likes_input {
+                display: none;
+            }
+
+            .like_btn {
+                outline-style: none;
+                border: none;
+                background: #fff;
+            }
         }
 
     }
