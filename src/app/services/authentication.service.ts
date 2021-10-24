@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { IUserData, ISignupModel, ILoginModel, ILoginData } from 'src/app/interfaces/UserInterface';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -39,8 +40,8 @@ export class AuthenticationService {
     return this.http.post<ILoginData>(`${environment.API_URL}/login`, userData, {withCredentials: true});
   }
 
-  // check whether the user is logged in
-  getUser(){
+  // get the user data
+  getUser() :Observable<IUserData>{
     return this.http.get<IUserData>(`${environment.API_URL}/user`, {
       headers: {
         'Authorization' : `Bearer ${localStorage.getItem('token')}`

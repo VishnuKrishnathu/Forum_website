@@ -2,6 +2,9 @@ export interface IUserData {
   id :number | undefined;
   username :string;
   email :string;
+  updated_at ?: null | '';
+  created_at ?: null | '';
+  email_verified_at ?: null | '';
 }
 
 export interface ISignupModel {
