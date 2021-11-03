@@ -14,6 +14,7 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
   @Input() postData! :IQuestionsData;
   likes_input_id :string = "";
   checkbox_stat :boolean = false;
+  likes_count :number = 0;
   like_post !:Subscription;
 
   constructor(
@@ -25,7 +26,10 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnChanges() :void{
     console.log(this.postData);
+    this.likes_count = this.postData.likes;
     this.likes_input_id = `like_btn ${this.postData.questions_id}`;
+    if(!this.postData.likes_id) this.checkbox_stat = false;
+    if(this.postData.likes_id) this.checkbox_stat = true;
   }
 
 
@@ -42,6 +46,8 @@ export class PostComponent implements OnInit, OnChanges, OnDestroy {
         this.checkbox_stat, this.postData.questions_id, userId, token
       ).subscribe((data) => console.log(data), (error) => console.log(error));
       this.checkbox_stat = !this.checkbox_stat;
+
+      this.likes_count ++;
     }
   }
 

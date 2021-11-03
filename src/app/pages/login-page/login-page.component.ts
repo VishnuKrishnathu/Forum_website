@@ -47,6 +47,7 @@ export class LoginPageComponent implements OnInit {
     }
     else{
       let values = this.loginForm.value;
+      console.log(values.username, values.password);
       let error_message = this.authenticate.handleSignIn({
         username : values.username,
         password : values.password
@@ -54,7 +55,8 @@ export class LoginPageComponent implements OnInit {
         localStorage.setItem("token", data.token);
         this.router.navigate(['/']);
       }
-      ,(err :IErrorData) => this.error = err.error.message);
+      // ,(err :IErrorData) => this.error = "Wrong login credentials. Try again");
+      ,(err :IErrorData) => console.log(err));
       console.log(error_message);
     }
   }
