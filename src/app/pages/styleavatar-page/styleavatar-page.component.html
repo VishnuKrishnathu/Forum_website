@@ -1,0 +1,22 @@
+<div class="d-flex justify-content-center align-items-center">
+    <app-avatar-circle 
+        [username]="username"
+    ></app-avatar-circle>
+</div>
+<div *ngFor="let section of styleOptions" class="p-2 d-flex flex-column">
+    <section 
+        class="section-name p-2 bg-primary rounded" 
+        style="font-weight: 700; font-size: 1.1rem;"
+    >
+        {{section.part | uppercase }}
+    </section>
+    <div class="choices">
+        <app-avatar-clickable
+            *ngFor="let options of section.options"
+            [username] = "username"
+            [part] = "section.part"
+            [option] = "options"
+            (handleClick)="changeAvatar($event)"
+        ></app-avatar-clickable>
+    </div>
+</div>

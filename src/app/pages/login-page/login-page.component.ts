@@ -55,9 +55,7 @@ export class LoginPageComponent implements OnInit {
         localStorage.setItem("token", data.token);
         this.router.navigate(['/']);
       }
-      // ,(err :IErrorData) => this.error = "Wrong login credentials. Try again");
-      ,(err :IErrorData) => console.log(err));
-      console.log(error_message);
+      ,(err :IErrorData) => this.error = "Wrong login credentials. Try again");
     }
   }
 

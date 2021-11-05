@@ -1,0 +1,17 @@
+.username-edit {
+    input {
+        outline-style: none;
+        border: 2px solid rgba(0, 0, 0, 0.808);
+    }
+}
+
+#avatar{
+    width: 10rem;
+    height: 10rem;
+    background: red;
+    overflow: hidden;
+
+    &::after {
+        content : "Edit"
+    }
+}

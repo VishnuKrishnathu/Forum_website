@@ -31,7 +31,6 @@ export class AuthenticationService {
 
   // registers new user
   handleSignUp(userData :ISignupModel){
-    console.log(userData);
     return this.http.post<ISignupModel>(`${environment.API_URL}/signup`, userData, {withCredentials: true});
   }
 
