@@ -17,6 +17,7 @@ import { UserEffects } from 'src/store/effects/user.effect';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { userReducer } from 'src/store/reducers/user.reducer';
+import { avatarReducer } from 'src/store/reducers/avatar.reducer';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { DomSanitizerPipe } from './pipes/dom-sanitizer.pipe';
 import { StyleavatarPageComponent } from './pages/styleavatar-page/styleavatar-page.component';
@@ -47,7 +48,7 @@ import { AvatarClickableComponent } from './components/avatar-clickable/avatar-c
     HttpClientModule,
     FormsModule,
     EffectsModule.forRoot([UserEffects]),
-    StoreModule.forRoot({user : userReducer})
+    StoreModule.forRoot({user : userReducer, avatar : avatarReducer})
   ],
   providers: [],
   bootstrap: [AppComponent]

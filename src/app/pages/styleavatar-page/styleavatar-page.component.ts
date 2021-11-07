@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Input, AfterViewInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Avataar } from 'src/app/interfaces/AvatarInterface';
+import { Store } from '@ngrx/store';
+import { updateAvatar } from 'src/store/actions/avatar.action';
+import { Options } from '@dicebear/micah';
 
 @Component({
   selector: 'app-styleavatar-page',
@@ -50,15 +54,52 @@ export class StyleavatarPageComponent implements OnInit {
       options : [  "beard", "scruff"]
     }
   ]
+  
+  public username :string = "VishnuKrishnathu";
 
-  public username :string = "Pratham"
+  avatar !: Observable<Options>;
 
-  constructor() { }
+  constructor(
+    private store :Store<{avatar : Options}>
+  ) { 
+    this.avatar = this.store.select('avatar');
+  }
 
   ngOnInit(): void {}
 
-  changeAvatar(value :any){
-    console.log(value)
+  changeAvatar(value : Avataar){
+    console.log(value);
+    this.store.dispatch(updateAvatar(value));
   }
+
+
+  /**
+   * An alternative for script tags in angular
+   * TODO: Make a component and add the code as it is to the component
+   */
+
+  // @Input() src: string = "";
+
+  // @Input() type: string = "";
+
+  // @ViewChild('script') script !: ElementRef;
+
+  // convertToScript() {
+  //   var element = this.script.nativeElement;
+  //   var script = document.createElement("script");
+  //   script.type = this.type ? this.type : "text/javascript";
+  //   if (this.src) {
+  //       script.src = this.src;
+  //   }
+  //   if (element.innerHTML) {
+  //       script.innerHTML = element.innerHTML;
+  //   }
+  //   var parent = element.parentElement;
+  //   parent.parentElement.replaceChild(script, parent);
+  // }
+
+  // ngAfterViewInit() :void {
+  //   this.convertToScript();
+  // }
 
 }
