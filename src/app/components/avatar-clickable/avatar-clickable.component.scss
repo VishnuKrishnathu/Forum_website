@@ -6,6 +6,7 @@
     border-color: #000;
     transition: 0.2s;
     transition-property: border-color;
+    display: inline-block;
 
     &:hover {
         border: 4px solid;

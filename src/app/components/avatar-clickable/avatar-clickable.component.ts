@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { createAvatar, Options } from '@dicebear/avatars';
 import * as style from '@dicebear/micah';
-import { Avataar } from 'src/app/interfaces/AvatarInterface';
+import { Avataar, Parts } from 'src/app/interfaces/AvatarInterface';
 import { Observable, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 
@@ -25,17 +25,16 @@ export class AvatarClickableComponent implements OnInit, OnChanges, AfterContent
   styleOptions :Partial<Options & style.Options> | undefined = {};
 
 
-  @Input() public part !: "mouth" | "eyebrows" | "hair" | "eyes" | "nose" | "ears" | "shirt" | "earrings" | "glasses" | "facialHair" ;
+  @Input() public part !: Parts;
   @Input() public option !:string;
   @Input() public username :string = ""
   @Output() public handleClick = new EventEmitter<Avataar>();
 
   constructor(
-    private store :Store
+    private store :Store<{avatar :Partial<Options & style.Options> | undefined}>
   ) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   ngOnChanges() :void {
     let tempObj : any= {
@@ -48,11 +47,9 @@ export class AvatarClickableComponent implements OnInit, OnChanges, AfterContent
 
   ngAfterContentInit() :void {
     this.svg$ = this.store.select('avatar').subscribe((data) => {
-        if(typeof data == 'object'){
-          this.svg = createAvatar(style, {...data, ...this.styleOptions});
-        }
-      },
-      (error) => console.log(error)
+      this.svg = createAvatar(style, {...data, ...this.styleOptions});
+    },
+    (error) => console.log(error)
     );
   }
 

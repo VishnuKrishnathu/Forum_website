@@ -23,6 +23,7 @@ import { DomSanitizerPipe } from './pipes/dom-sanitizer.pipe';
 import { StyleavatarPageComponent } from './pages/styleavatar-page/styleavatar-page.component';
 import { AvatarCircleComponent } from './components/avatar-circle/avatar-circle.component';
 import { AvatarClickableComponent } from './components/avatar-clickable/avatar-clickable.component';
+import { ColorPickerComponent } from './components/color-picker/color-picker.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { AvatarClickableComponent } from './components/avatar-clickable/avatar-c
     StyleavatarPageComponent,
     AvatarCircleComponent,
     AvatarClickableComponent,
+    ColorPickerComponent,
   ],
   imports: [
     BrowserModule,

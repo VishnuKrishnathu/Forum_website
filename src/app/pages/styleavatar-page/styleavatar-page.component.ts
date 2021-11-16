@@ -1,9 +1,11 @@
-import { Component, OnInit, ElementRef, ViewChild, Input, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Avataar } from 'src/app/interfaces/AvatarInterface';
 import { Store } from '@ngrx/store';
 import { updateAvatar } from 'src/store/actions/avatar.action';
-import { Options } from '@dicebear/micah';
+import { AvatarService } from 'src/app/services/avatar.service';
+import * as style from '@dicebear/micah';
+import { Options } from '@dicebear/avatars';
 
 @Component({
   selector: 'app-styleavatar-page',
@@ -53,14 +55,57 @@ export class StyleavatarPageComponent implements OnInit {
       part : "facialHair",
       options : [  "beard", "scruff"]
     }
+  ];
+
+  public colorPickerOptions :Array<{label : string ; part :"shirtColor" | "mouthColor" | "hairColor" | "glassesColor" | "facialHairColor" | "eyebrowColor" | "eyeShadowColor" | "earringColor" | "baseColor"}> = [
+    {
+      label : 'Face Color :',
+      part : 'baseColor',
+    },
+    {
+      label : 'Shirt Color :',
+      part : 'shirtColor',
+    },
+    {
+      label : 'Mouth Color :',
+      part : 'mouthColor',
+    },
+    {
+      label : 'Hair Color :',
+      part : 'hairColor',
+    },
+    {
+      label : 'Glasses Color :',
+      part : 'glassesColor',
+    },
+    {
+      label : 'Facial Hair Color :',
+      part : 'facialHairColor',
+    },
+    {
+      label : 'Eyebrow Color :',
+      part : 'eyebrowColor',
+    },
+    {
+      label : 'Eye Shadow Color :',
+      part : 'eyeShadowColor',
+    },
+    {
+      label : 'Earring Color :',
+      part : 'earringColor',
+    }
   ]
   
   public username :string = "VishnuKrishnathu";
+  protected styleObj !: Partial<style.Options & Options>;
 
-  avatar !: Observable<Options>;
+  avatar !: Observable<style.Options>;
+
+  public baseColor : "baseColor"= "baseColor";
 
   constructor(
-    private store :Store<{avatar : Options}>
+    private store :Store<{avatar : style.Options}>,
+    private avatarService :AvatarService
   ) { 
     this.avatar = this.store.select('avatar');
   }
@@ -68,38 +113,16 @@ export class StyleavatarPageComponent implements OnInit {
   ngOnInit(): void {}
 
   changeAvatar(value : Avataar){
-    console.log(value);
     this.store.dispatch(updateAvatar(value));
   }
 
+  saveAvatar(){
+    // this.avatarService.changeAvatar()
+  }
 
-  /**
-   * An alternative for script tags in angular
-   * TODO: Make a component and add the code as it is to the component
-   */
+  getSvgObj(styleObj :Partial<style.Options & Options>){
+    this.styleObj = styleObj;
+  }
 
-  // @Input() src: string = "";
-
-  // @Input() type: string = "";
-
-  // @ViewChild('script') script !: ElementRef;
-
-  // convertToScript() {
-  //   var element = this.script.nativeElement;
-  //   var script = document.createElement("script");
-  //   script.type = this.type ? this.type : "text/javascript";
-  //   if (this.src) {
-  //       script.src = this.src;
-  //   }
-  //   if (element.innerHTML) {
-  //       script.innerHTML = element.innerHTML;
-  //   }
-  //   var parent = element.parentElement;
-  //   parent.parentElement.replaceChild(script, parent);
-  // }
-
-  // ngAfterViewInit() :void {
-  //   this.convertToScript();
-  // }
 
 }

@@ -1,7 +1,9 @@
 import * as style from "@dicebear/micah";
 
+export type Parts = "mouth" | "eyebrows" | "hair" | "eyes" | "nose" | "ears" | "shirt" | "earrings" | "glasses" | "facialHair" | "shirtColor" | "mouthColor" | "hairColor" | "glassesColor" | "facialHairColor" | "eyebrowColor" | "eyeShadowColor" | "earringColor" | "baseColor";
+
 export interface Avataar {
-    part : "mouth" | "eyebrows" | "hair" | "eyes" | "nose" | "ears" | "shirt" | "earrings" | "glasses" | "facialHair" 
+    part : Parts;
     options : Array<string>;
 }
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { CanActivate, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
@@ -22,6 +22,7 @@ export class AuthGuard implements CanActivate {
       },
       (error)=>{
         if(error.status == 401) this.router.navigate(['/login']);
+        else console.log("different error");
       });
       return this.activateRoute;
   }
