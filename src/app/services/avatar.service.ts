@@ -14,6 +14,6 @@ export class AvatarService {
   ) { }
 
   changeAvatar(avatarObj :Partial<style.Options & Options>, usersId :number){
-    this.http.post(environment.API_URL, {...avatarObj, usersId});
+    return this.http.post(`${environment.API_URL}/change-avatar`, {...avatarObj, usersId});
   }
 }

@@ -8,6 +8,7 @@ import { AskQuestionComponent } from './pages/ask-question/ask-question.componen
 import { AuthGuard } from './guards/auth.guard';
 import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.component';
 import { ProfileModule } from './modules/profile/profile.module';
+import { ProfileAuthGuard } from './guards/profile-auth.guard';
 
 const routes: Routes = [
   { path : 'signup', component: SignupPageComponent },
@@ -19,7 +20,8 @@ const routes: Routes = [
   },
   {
     path : 'profile',
-    loadChildren : () => ProfileModule
+    loadChildren : () => ProfileModule,
+    canActivateChild : [ ProfileAuthGuard ]
   },
   { 
     path : '', 

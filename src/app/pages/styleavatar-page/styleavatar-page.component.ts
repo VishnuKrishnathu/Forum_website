@@ -4,6 +4,7 @@ import { Avataar } from 'src/app/interfaces/AvatarInterface';
 import { Store } from '@ngrx/store';
 import { updateAvatar } from 'src/store/actions/avatar.action';
 import { AvatarService } from 'src/app/services/avatar.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import * as style from '@dicebear/micah';
 import { Options } from '@dicebear/avatars';
 
@@ -117,7 +118,12 @@ export class StyleavatarPageComponent implements OnInit {
   }
 
   saveAvatar(){
-    // this.avatarService.changeAvatar()
+    let user_id = AuthenticationService.getterUser().id;
+    console.log(user_id);
+    if(user_id) this.avatarService.changeAvatar(this.styleObj, user_id).subscribe(
+      (data) => console.log(data),
+      (error) => console.log(error)
+    );
   }
 
   getSvgObj(styleObj :Partial<style.Options & Options>){
