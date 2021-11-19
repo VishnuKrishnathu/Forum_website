@@ -1,11 +1,11 @@
 import { Options } from "@dicebear/avatars";
 import * as style from "@dicebear/micah";
 import { createReducer, on } from "@ngrx/store";
-import { updateAvatar, avatar } from "../actions/avatar.action";
+import { updateAvatar, avatar, avatarSuccess } from "../actions/avatar.action";
 
 
 export const initialState :Partial<Options & style.Options> | undefined = {
-    seed : "VishnuKrishnathu",
+    seed : "seed",
 };
 
 export const avatarReducer = createReducer(
@@ -16,5 +16,6 @@ export const avatarReducer = createReducer(
         state = {...state, ...tempObj};
         return state;
     }),
-    on(avatar, (state) => state)
+    on(avatar, (state) => state),
+    on(avatarSuccess, (state, svgData) => svgData)
 );

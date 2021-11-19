@@ -119,8 +119,14 @@ export class StyleavatarPageComponent implements OnInit {
 
   saveAvatar(){
     let user_id = AuthenticationService.getterUser().id;
-    console.log(user_id);
-    if(user_id) this.avatarService.changeAvatar(this.styleObj, user_id).subscribe(
+    let tempArr = Object.keys(this.styleObj);
+    let tempObj :any= this.styleObj;
+    for(let i=0; i<tempArr.length; i++){
+      if (typeof tempObj[tempArr[i]] == "object"){
+        tempObj[tempArr[i]] = tempObj[tempArr[i]][0];
+      };
+    }
+    if(user_id) this.avatarService.changeAvatar(tempObj, user_id).subscribe(
       (data) => console.log(data),
       (error) => console.log(error)
     );

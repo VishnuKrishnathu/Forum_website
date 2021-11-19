@@ -27,6 +27,9 @@ export class ProfilePageComponent implements OnInit, DoCheck {
 
   constructor(private authService :AuthenticationService) { }
 
+  /**
+   * ? User data can be fetched from guard (AuthService)
+   */
   ngOnInit(): void {
     this.authService.getUser().subscribe(
       (data :IUserData) => this.user = data,

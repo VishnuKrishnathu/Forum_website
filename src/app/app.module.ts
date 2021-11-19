@@ -14,6 +14,7 @@ import { AskQuestionComponent } from './pages/ask-question/ask-question.componen
 import { QuestionBoxComponent } from './components/question-box/question-box.component';
 import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.component';
 import { UserEffects } from 'src/store/effects/user.effect';
+import { AvatarEffect } from 'src/store/effects/avatar.effect';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { userReducer } from 'src/store/reducers/user.reducer';
@@ -49,7 +50,7 @@ import { ColorPickerComponent } from './components/color-picker/color-picker.com
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    EffectsModule.forRoot([UserEffects]),
+    EffectsModule.forRoot([UserEffects, AvatarEffect]),
     StoreModule.forRoot({user : userReducer, avatar : avatarReducer})
   ],
   providers: [],

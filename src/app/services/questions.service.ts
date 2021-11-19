@@ -21,7 +21,6 @@ export class QuestionsService {
   }
 
   getAllQuestions(user_id : number | undefined | null){
-    console.log(AuthenticationService.getterUser().id);
     return this.http.post<IQuestions>(`${environment.API_URL}/get-questions`, {
       user_id
     });

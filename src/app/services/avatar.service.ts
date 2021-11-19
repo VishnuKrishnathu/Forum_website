@@ -13,7 +13,21 @@ export class AvatarService {
     private http :HttpClient
   ) { }
 
-  changeAvatar(avatarObj :Partial<style.Options & Options>, usersId :number){
-    return this.http.post(`${environment.API_URL}/change-avatar`, {...avatarObj, usersId});
+  changeAvatar(avatarObj :Partial<style.Options & Options>, usersId :number) {
+    return this.http.post<Partial<style.Options & Options>>(`${environment.API_URL}/change-avatar`, {...avatarObj, usersId}, {
+      headers : {
+        'Content-Type' : 'application/json',
+        'Authorization' : `Bearer ${localStorage.getItem('token')}`
+      }
+    });
+  }
+
+  getAvatar(){
+    return this.http.get<Partial<style.Options & Options>>(`${environment.API_URL}/get-avatar`, {
+      headers : {
+        'Content-Type' : 'application/json',
+        'Authorization' : `Bearer ${localStorage.getItem('token')}`
+      }
+    });
   }
 }
