@@ -3,6 +3,7 @@ import { createAvatar, Options } from '@dicebear/avatars';
 import * as style from '@dicebear/micah';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
+import { avatar } from 'src/store/actions/avatar.action';
 
 @Component({
   selector: 'app-avatar-circle',
@@ -26,14 +27,16 @@ export class AvatarCircleComponent implements OnInit, OnChanges, AfterContentIni
   public styleOptions !: Partial<style.Options & Options> | undefined;
 
   constructor(
-    private store :Store<{ avatar :Partial<style.Options & Options> | undefined }>
-  ) {}
+    private store :Store<{ avatar :Partial<style.Options & Options>| undefined }>
+  ) {
+    this.store.dispatch({type : '[Avatar] Get Avatar'});
+  }
 
   ngOnInit(): void {}
 
   ngOnChanges() :void {
     let tempObj : Partial<style.Options & Options> | undefined= {
-      seed : this.username,
+      seed : "seed",
     }
     this.styleOptions = tempObj;
     this.svg = createAvatar(style, tempObj)
@@ -44,6 +47,8 @@ export class AvatarCircleComponent implements OnInit, OnChanges, AfterContentIni
       this.styleOptions = {...this.styleOptions, ...data};
       this.svg = createAvatar(style, this.styleOptions);
     }, (error) => console.log(error));
+
+
   }
 
   ngDoCheck() :void {

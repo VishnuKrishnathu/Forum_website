@@ -9,7 +9,7 @@ import * as style from '@dicebear/micah';
   templateUrl: './profile-page.component.html',
   styleUrls: ['./profile-page.component.scss']
 })
-export class ProfilePageComponent implements OnInit, DoCheck {
+export class ProfilePageComponent implements OnInit {
 
   public user : IUserData = {
     id : undefined,
@@ -21,9 +21,6 @@ export class ProfilePageComponent implements OnInit, DoCheck {
     username : "",
     email : ""
   }
-
-  public svg :string = "";
-
 
   constructor(private authService :AuthenticationService) { }
 
@@ -38,14 +35,4 @@ export class ProfilePageComponent implements OnInit, DoCheck {
 
   }
   
-  ngDoCheck() :void {
-    if(this.userDup !== this.user){
-      this.userDup = this.user;
-      this.svg = createAvatar(style, {
-        seed : this.userDup.username,
-        backgroundColor : "purple",
-      });
-    }
-  }
-
 }

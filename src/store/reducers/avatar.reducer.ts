@@ -11,11 +11,21 @@ export const initialState :Partial<Options & style.Options> | undefined = {
 export const avatarReducer = createReducer(
     initialState,
     on(updateAvatar, function(state, {part , options} ){
-        let tempObj :any= {};
+        let tempObj :any = {};
         tempObj[part] = options;
-        state = {...state, ...tempObj};
+        state = { ...state, ...tempObj };
         return state;
     }),
-    on(avatar, (state) => state),
-    on(avatarSuccess, (state, svgData) => svgData)
+    on(avatarSuccess, (state, svgData) => {
+        let tempObj :any = {...state, ...svgData};
+        for (let [key , value] of Object.entries(tempObj)) {
+            if(key == "seed") continue;
+            if(value == null) delete tempObj[key]
+            else {
+                tempObj[key] = [ value ];
+            }
+            if(key == "type") delete tempObj[key]
+        }
+        return tempObj;
+    })
 );
