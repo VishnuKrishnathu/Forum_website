@@ -1,21 +1,33 @@
-<div class="mx-5 my-2 rounded d-flex align-items-start justify-content-between post_component">
-    <div class="post_pfp rounded-circle my-2 ml-3 mr-5"></div>
-    <div class="content_forum d-flex flex-column align-items-start">
-        <div class="question_post">{{postData.question}}</div>
-        <section class="post_details my-2">
-            <span class="username_post mr-2">{{postData.username}}</span>
-            <span class="time_post mx-2">10 minutes ago</span>
-        </section>
-        <div class="w-100 d-flex align-items-center justify-content-between">
-            <div class="likes_post d-flex align-items-center justify-content-between">
-                <input type="checkbox" name="like_btn" class="likes_input" id={{likes_input_id}} [(ngModel)]="checkbox_stat">
-                <button (click)="getCheckboxStatus()" class="like_btn">
-                    <img src="assets/like.svg" *ngIf="!checkbox_stat">
-                    <img src="assets/liked.svg" *ngIf="checkbox_stat">
-                </button>
-                <span class="mx-2">{{likes_count}} like</span>
+<section class="mx-5 my-2 d-flex flex-column">
+    <div class="rounded d-flex align-items-start justify-content-between post_component">
+        <div class="post_pfp rounded-circle my-2 ml-3 mr-5"></div>
+        <div class="content_forum d-flex flex-column align-items-start">
+            <div class="question_post">{{postData.question}}</div>
+            <section class="post_details my-2">
+                <span class="username_post mr-2">{{postData.username}}</span>
+                <span class="time_post mx-2">10 minutes ago</span>
+            </section>
+            <div class="w-100 d-flex align-items-center justify-content-between">
+                <div class="likes_post d-flex align-items-center justify-content-between">
+                    <input type="checkbox" name="like_btn" class="likes_input" id={{likes_input_id}} [(ngModel)]="checkbox_stat">
+                    <button (click)="getCheckboxStatus()" class="like_btn">
+                        <img src="assets/like.svg" *ngIf="!checkbox_stat">
+                        <img src="assets/liked.svg" *ngIf="checkbox_stat">
+                    </button>
+                    <span class="mx-2">{{likes_count}} like</span>
+                </div>
+                <div class="mx-5">Answer</div>
             </div>
-            <div class="mx-5">Answer</div>
         </div>
     </div>
-</div>
+    <div class="d-flex align-items-center justify-content-center">
+        <input type="text" class="w-100 comment-input" [(ngModel)]="comment"/>
+        <button 
+            style="background : hsl(216deg 98% 52%); outline-style: none; border: none;" 
+            class="rounded"
+            (click)="submitComment()"
+        >
+            <img src="assets/send.svg" width="30" height="30">
+        </button>
+    </div>
+</section>

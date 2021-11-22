@@ -28,7 +28,7 @@ export class QuestionsService {
 
   likesHandler(likeStatus :boolean, postId :number, userId :number, token :string | null){
     if(!likeStatus){
-      return this.http.post<{message :string}>(`${environment.API_URL}/addLike`, {
+      return this.http.post<{message :string} | null>(`${environment.API_URL}/addLike`, {
         userId, postId
       }, {
         headers : {

@@ -49,7 +49,6 @@ export class HomePageComponent implements OnInit, DoCheck {
       this.userOld = this.user;
 
       // get questions data from the backend
-      console.log("a change has been detected");
       this.questionService.getAllQuestions(this.user.id).subscribe(
         (data :IQuestions) => this.posts = data.data,
         (error :any) => console.log(error)
