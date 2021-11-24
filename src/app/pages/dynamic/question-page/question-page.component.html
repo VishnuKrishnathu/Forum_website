@@ -1,0 +1,26 @@
+<div class="post_content m-5 p-2">
+    <div style="color: hsl(0, 0%, 50%); font-size: 0.9rem;">The question is posted by the user VishnuKrishnathu</div>
+    <div class="question">
+        What you know about rollin down in the deep ?
+    </div>
+    <div class="post_details">
+        <span class="px-4 post_data">
+            40 Likes
+        </span>
+        <span class="px-4 post_data">32 Comments</span>
+        <span class="px-4 post_data">Share</span>
+    </div>
+
+    <form class="submit-comment mx-4 mt-3" (ngSubmit)="handleComment($event)">
+        <textarea class="w-100 px-2" placeholder="Comment" style="resize: none; height: 5rem;"></textarea>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <section class="comment-section mx-4 mt-3 py-3">
+        <app-user-comment
+            *ngFor="let question of postComments"
+            [comment]="question.comment"
+            [username]="question.username"
+        ></app-user-comment>
+    </section>
+</div>

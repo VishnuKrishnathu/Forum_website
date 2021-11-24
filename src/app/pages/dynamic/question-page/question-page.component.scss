@@ -1,0 +1,17 @@
+.post_content{
+    border: 2px solid rgb(177, 177, 177);
+
+    .question{
+        font-weight: 700;
+        font-size: 1.3rem;
+    }
+    .post_details{
+        .post_data{
+            font-size: 0.9rem;
+        }
+    }
+
+    .comment-section{
+        border: 1px solid #000;
+    }
+}

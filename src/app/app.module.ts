@@ -25,6 +25,8 @@ import { StyleavatarPageComponent } from './pages/styleavatar-page/styleavatar-p
 import { AvatarCircleComponent } from './components/avatar-circle/avatar-circle.component';
 import { AvatarClickableComponent } from './components/avatar-clickable/avatar-clickable.component';
 import { ColorPickerComponent } from './components/color-picker/color-picker.component';
+import { QuestionPageComponent } from './pages/dynamic/question-page/question-page.component';
+import { UserCommentComponent } from './components/user-comment/user-comment.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { ColorPickerComponent } from './components/color-picker/color-picker.com
     AvatarCircleComponent,
     AvatarClickableComponent,
     ColorPickerComponent,
+    QuestionPageComponent,
+    UserCommentComponent,
   ],
   imports: [
     BrowserModule,

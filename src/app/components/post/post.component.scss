@@ -16,6 +16,12 @@
             font-size: 1.3rem;
             font-weight: 700;
             cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
         }
 
         .post_details{

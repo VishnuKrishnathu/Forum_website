@@ -2,10 +2,13 @@
     <div class="rounded d-flex align-items-start justify-content-between post_component">
         <div class="post_pfp rounded-circle my-2 ml-3 mr-5"></div>
         <div class="content_forum d-flex flex-column align-items-start">
-            <div class="question_post">{{postData.question}}</div>
+            <div 
+                class="question_post"
+                [routerLink]="['/question', postData.questions_id]"
+            >{{postData.question}}</div>
             <section class="post_details my-2">
                 <span class="username_post mr-2">{{postData.username}}</span>
-                <span class="time_post mx-2">10 minutes ago</span>
+                <!-- <span class="time_post mx-2">10 minutes ago</span> -->
             </section>
             <div class="w-100 d-flex align-items-center justify-content-between">
                 <div class="likes_post d-flex align-items-center justify-content-between">

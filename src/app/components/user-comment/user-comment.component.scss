@@ -1,0 +1,19 @@
+.profile_placeholder{
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 999px;
+    background: rgb(170, 59, 59);
+    cursor: pointer;
+
+    & + span{
+        font-weight: 600;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.user-comment{
+    border-bottom: 2px solid hsl(0, 0%, 50%);
+}

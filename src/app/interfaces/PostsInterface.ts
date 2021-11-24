@@ -11,3 +11,14 @@ export interface IQuestionsData {
 export interface IQuestions {
     data : Array<IQuestionsData>
 }
+
+export interface IComments {
+    current_page :number,
+    data : Array<ICommentsData>
+}
+
+export interface ICommentsData {
+    comment :string;
+    username :string;
+    users_id :string;
+}

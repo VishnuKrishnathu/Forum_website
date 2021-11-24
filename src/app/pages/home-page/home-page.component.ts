@@ -51,6 +51,7 @@ export class HomePageComponent implements OnInit, DoCheck {
       // get questions data from the backend
       this.questionService.getAllQuestions(this.user.id).subscribe(
         (data :IQuestions) => this.posts = data.data,
+        // (data :IQuestions) => console.log(data),
         (error :any) => console.log(error)
       );
     }
